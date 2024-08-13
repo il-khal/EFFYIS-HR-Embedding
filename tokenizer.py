@@ -31,3 +31,18 @@ def to_sentences(text):
     sentences = [sent.text for sent in doc.sents]
     sentences = [clean(sent) for sent in sentences]
     return sentences
+
+# Embedding the whole text
+def embed_text(text):
+    doc = nlp(text)
+    return doc.vector
+
+# Embedding each sentence
+def embed_sentences(sentences):
+    embeddings = [nlp(sentence).vector for sentence in sentences]
+    return embeddings
+
+# Embedding each word
+def embed_words(words):
+    embeddings = [nlp(word).vector for word in words]
+    return embeddings

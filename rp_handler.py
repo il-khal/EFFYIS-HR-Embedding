@@ -1,16 +1,18 @@
 import runpod
-from tokenizer import tokenize
-
+from tokenizer import tokenize, embed_text, embed_sentences, embed_words
 
 
 def process_input(input):
     text = input['text']
     full_text, sentences, words = tokenize(text)
+    embedded_full_text = embed_text(full_text)
+    embedded_sentences = embed_sentences(sentences)
+    embedded_words = embed_words(words)
 
     return {
-        "Full text" : full_text,
-        "Sentences" : sentences, 
-        "Words" : words
+        "Full text" : embedded_full_text,
+        "Sentences" : embedded_sentences, 
+        "Words" : embedded_words,
     }
 
 def handler(event):
