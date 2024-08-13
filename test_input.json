@@ -1,5 +1,5 @@
 {
     "input": {
-        "name": "Ashley"
+        "text": "Hello tout le monde! Ceci est un test text. Let's clean, tokenize, and split it."
     }
 }

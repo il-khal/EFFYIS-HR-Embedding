@@ -1,11 +1,16 @@
 import runpod
+from tokenizer import tokenize
+
+
 
 def process_input(input):
-    name = input['name']
-    greeting = f'Hello {name}'
+    text = input['text']
+    full_text, sentences, words = tokenize(text)
 
     return {
-        "greeting": greeting
+        "Full text" : full_text,
+        "Sentences" : sentences, 
+        "Words" : words
     }
 
 def handler(event):
