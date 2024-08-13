@@ -39,10 +39,10 @@ def embed_text(text):
 
 # Embedding each sentence
 def embed_sentences(sentences):
-    embeddings = [nlp(sentence).vector for sentence in sentences]
+    embeddings = [{"sentence" : sentence, "embedding" : nlp(sentence).vector} for sentence in sentences]
     return embeddings
 
 # Embedding each word
 def embed_words(words):
-    embeddings = [nlp(word).vector for word in words]
+    embeddings = [{"word" : word, "embedding" : nlp(word).vector} for word in words]
     return embeddings

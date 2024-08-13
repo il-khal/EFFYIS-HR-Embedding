@@ -10,9 +10,9 @@ def process_input(input):
     embedded_words = embed_words(words)
 
     return {
-        "Full text" : embedded_full_text,
-        "Sentences" : embedded_sentences, 
-        "Words" : embedded_words,
+        "full text" : embedded_full_text,
+        "sentences" : embedded_sentences, 
+        "words" : embedded_words,
     }
 
 def handler(event):
