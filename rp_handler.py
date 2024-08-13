@@ -1,6 +1,5 @@
 import runpod
 
-
 def process_input(input):
     name = input['name']
     greeting = f'Hello {name}'
