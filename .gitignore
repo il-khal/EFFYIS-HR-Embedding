@@ -2,3 +2,4 @@ out.txt
 __pycache__/
 test_input.json
 ping.py
+ner_model/
