@@ -2,3 +2,6 @@ out.txt
 __pycache__/
 test_input.json
 ping.py
+all-MiniLM-L6-v2/
+e5/
+ner_model/

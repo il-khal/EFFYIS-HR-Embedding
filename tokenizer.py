@@ -1,6 +1,10 @@
 from spacy.lang.fr.stop_words import STOP_WORDS as fr_stop_words
 import spacy
 import string
+from sentence_transformers import SentenceTransformer
+
+# Load the BERT Model
+model = SentenceTransformer('./all-MiniLM-L6-v2')
 
 # Load the spaCy English model
 nlp = spacy.load("en_core_web_sm")
@@ -34,15 +38,15 @@ def to_sentences(text):
 
 # Embedding the whole text
 def embed_text(text):
-    doc = nlp(text)
+    doc = model.encode(text)
     return doc.vector
 
 # Embedding each sentence
 def embed_sentences(sentences):
-    embeddings = [{"sentence" : sentence, "embedding" : nlp(sentence).vector.tolist()} for sentence in sentences]
+    embeddings = [{"sentence" : sentence, "embedding" : model.encode(sentence).tolist()} for sentence in sentences]
     return embeddings
 
 # Embedding each word
 def embed_words(words):
-    embeddings = [{"word" : word, "embedding" : nlp(word).vector.tolist()} for word in words]
+    embeddings = [{"word" : word, "embedding" : model.encode(word).tolist()} for word in words]
     return embeddings
