@@ -6,11 +6,11 @@ def process_input(input):
     text = input['text']
     full_text, sentences, words = tokenize(text)
     # embedded_full_text = embed_text(full_text)
-    embedded_sentences = embed_sentences(sentences)
+    # embedded_sentences = embed_sentences(sentences)
     embedded_words = embed_words(words)
 
     return jsonable_encoder({
-        "sentences" : embedded_sentences, 
+        # "sentences" : embedded_sentences, 
         "words" : embedded_words
     })
 
