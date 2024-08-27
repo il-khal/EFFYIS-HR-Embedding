@@ -1,48 +1,18 @@
-from spacy.lang.fr.stop_words import STOP_WORDS as fr_stop_words
-import spacy
-import string
+import re
+import nltk
 
-# Load the spaCy English model
-nlp = spacy.load("en_core_web_sm")
+nltk.download('punkt')
 
-def tokenize(text):
-    full_text = clean(text)
-    sentences = to_sentences(text)
-    words = [j for i in sentences for j in to_words(i)]
+def clean_text(text):
+    text = re.sub(r'\s+', ' ', text)  
+    text = re.sub(r'[^\w\s.,]', '', text)  
+    return text.strip()
 
-    return full_text, sentences, words
+def tokenize_into_sentences(text):
+    from nltk.tokenize import sent_tokenize
+    return sent_tokenize(text)
 
-def clean(text):
-    # Remove punctuation and extra spaces
-    text = ' '.join(text.split()).lower()
-    text = ''.join([char for char in text if char not in string.punctuation])
-    return text
-
-def to_words(text):
-    # Tokenize text into words and remove stop words
-    doc = nlp(text)
-    stop_words = set(nlp.Defaults.stop_words).union(fr_stop_words)
-    words = [token.text for token in doc if token.text not in stop_words]
-    return words
-
-def to_sentences(text):
-    # Tokenize text into sentences
-    doc = nlp(text)
-    sentences = [sent.text for sent in doc.sents]
-    sentences = [clean(sent) for sent in sentences]
+def process_text(text):
+    cleaned_text = clean_text(text)
+    sentences = tokenize_into_sentences(cleaned_text)
     return sentences
-
-# Embedding the whole text
-def embed_text(text):
-    doc = nlp(text)
-    return doc.vector
-
-# Embedding each sentence
-def embed_sentences(sentences):
-    embeddings = [{"sentence" : sentence, "embedding" : nlp(sentence).vector.tolist()} for sentence in sentences]
-    return embeddings
-
-# Embedding each word
-def embed_words(words):
-    embeddings = [{"word" : word, "embedding" : nlp(word).vector.tolist()} for word in words]
-    return embeddings
