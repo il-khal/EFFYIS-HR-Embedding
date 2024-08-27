@@ -1,7 +1,7 @@
 import re
 import nltk
 
-nltk.download('punkt')
+nltk.download('punkt_tab')
 
 def clean_text(text):
     text = re.sub(r'\s+', ' ', text)  
