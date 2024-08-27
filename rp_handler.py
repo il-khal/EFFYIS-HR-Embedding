@@ -7,9 +7,13 @@ def process_input(input):
     text = input['text']
     processed_text = process_text(text)
     embeddings = get_embeddings(processed_text)
+    
+    result = [
+        {"sentence": sentence, "embedding": embedding.tolist()} for sentence, embedding in zip(processed_text, embeddings)
+    ]
 
     return jsonable_encoder({
-        embeddings: embeddings
+        "embeddings": result
     })
 
 def handler(event):
