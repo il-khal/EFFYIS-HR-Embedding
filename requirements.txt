@@ -1,2 +1,5 @@
 runpod
-spacy
+nltk
+torch
+sentence-transformers
+fastapi
